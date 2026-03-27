@@ -44,9 +44,9 @@ export default function Contacto() {
           <p><i className="fas fa-envelope"></i> E-Mail:</p>
           <ul className="email-list">
             <li>
-              {/* Actualizado a ventas */}
-              <a href="mailto:ventas@seprop-panama.com">
-                ventas@seprop-panama.com
+              {/* Actualizado a tu Gmail personal para la prueba */}
+              <a href="mailto:esquiveljohn2@gmail.com">
+                esquiveljohn2@gmail.com
               </a>
             </li>
           </ul>

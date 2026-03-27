@@ -4,8 +4,9 @@ import { Resend } from "resend";
 
 // Tu API Key se mantiene igual en Vercel
 const resend = new Resend(process.env.RESEND_API_KEY);
-// CAMBIO AQUÍ: Ahora todo va para ventas
-const CORREO_DESTINO = "ventas@seprop-panama.com";
+
+// PRUEBA: Cambiamos el destino a tu correo personal
+const CORREO_DESTINO = "esquiveljohn2@gmail.com";
 
 export async function sendContactEmail(formData: FormData) {
   const nombre = formData.get("nombre") as string;
@@ -17,10 +18,10 @@ export async function sendContactEmail(formData: FormData) {
     await resend.emails.send({
       from: "Web Seprop <onboarding@resend.dev>",
       to: CORREO_DESTINO,
-      subject: `Consulta Web: ${nombre}`,
+      subject: `Consulta Web (Prueba): ${nombre}`,
       html: `
         <div style="font-family: sans-serif; line-height: 1.5;">
-          <h2>Nueva consulta de información</h2>
+          <h2>Nueva consulta de información - PRUEBA</h2>
           <p><strong>Nombre:</strong> ${nombre}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Teléfono:</strong> ${telefono}</p>
@@ -47,11 +48,11 @@ export async function sendCVEmail(formData: FormData) {
     await resend.emails.send({
       from: "RRHH Seprop <onboarding@resend.dev>",
       to: CORREO_DESTINO,
-      subject: `CV Recibido: ${nombre} - ${puesto}`,
+      subject: `CV Recibido (Prueba): ${nombre} - ${puesto}`,
       attachments: [{ filename: file.name, content: buffer }],
       html: `
         <div style="font-family: sans-serif; line-height: 1.5;">
-          <h2>Nueva Hoja de Vida recibida</h2>
+          <h2>Nueva Hoja de Vida recibida - PRUEBA</h2>
           <p><strong>Candidato:</strong> ${nombre}</p>
           <p><strong>Teléfono:</strong> ${telefono}</p>
           <p><strong>Puesto de interés:</strong> ${puesto}</p>
