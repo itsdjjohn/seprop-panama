@@ -2,10 +2,10 @@
 
 import { Resend } from "resend";
 
-// Tu API Key se mantiene igual en Vercel
+// Asegúrate de que esta variable esté en los Settings de Vercel
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// PRUEBA: Cambiamos el destino a tu correo personal
+// Para la prueba, envíalo a tu Gmail
 const CORREO_DESTINO = "esquiveljohn2@gmail.com";
 
 export async function sendContactEmail(formData: FormData) {
@@ -16,21 +16,15 @@ export async function sendContactEmail(formData: FormData) {
 
   try {
     await resend.emails.send({
-      from: "Web Seprop <onboarding@resend.dev>",
+      // CAMBIO VITAL: Usa tu dominio oficial aquí
+      from: "Seprop Web <info@seprop-panama.com>", 
       to: CORREO_DESTINO,
-      subject: `Consulta Web (Prueba): ${nombre}`,
-      html: `
-        <div style="font-family: sans-serif; line-height: 1.5;">
-          <h2>Nueva consulta de información - PRUEBA</h2>
-          <p><strong>Nombre:</strong> ${nombre}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Teléfono:</strong> ${telefono}</p>
-          <p><strong>Mensaje:</strong><br/>${mensaje}</p>
-        </div>
-      `,
+      subject: `Consulta Web: ${nombre}`,
+      html: `<h2>Nueva consulta</h2><p>Nombre: ${nombre}</p><p>Mensaje: ${mensaje}</p>`,
     });
     return { success: true };
   } catch (error) {
+    console.error(error);
     return { success: false };
   }
 }
@@ -46,21 +40,16 @@ export async function sendCVEmail(formData: FormData) {
     const buffer = Buffer.from(arrayBuffer);
 
     await resend.emails.send({
-      from: "RRHH Seprop <onboarding@resend.dev>",
+      // CAMBIO VITAL: Usa tu dominio oficial aquí
+      from: "RRHH Seprop <rrhh@seprop-panama.com>",
       to: CORREO_DESTINO,
-      subject: `CV Recibido (Prueba): ${nombre} - ${puesto}`,
+      subject: `CV Recibido: ${nombre} - ${puesto}`,
       attachments: [{ filename: file.name, content: buffer }],
-      html: `
-        <div style="font-family: sans-serif; line-height: 1.5;">
-          <h2>Nueva Hoja de Vida recibida - PRUEBA</h2>
-          <p><strong>Candidato:</strong> ${nombre}</p>
-          <p><strong>Teléfono:</strong> ${telefono}</p>
-          <p><strong>Puesto de interés:</strong> ${puesto}</p>
-        </div>
-      `,
+      html: `<h2>Nueva Hoja de Vida</h2><p>Candidato: ${nombre}</p>`,
     });
     return { success: true };
   } catch (error) {
+    console.error(error);
     return { success: false };
   }
 }
