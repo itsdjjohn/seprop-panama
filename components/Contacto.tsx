@@ -43,8 +43,12 @@ export default function Contacto() {
           <p><i className="fas fa-mobile-alt"></i> WhatsApp: (+507) 6904-3435</p>
           <p><i className="fas fa-envelope"></i> E-Mail:</p>
           <ul className="email-list">
-            <li><a href="mailto:atencionalcliente@seprop-panama.com">atencionalcliente@seprop-panama.com</a></li>
-            <li><a href="mailto:ventas@seprop-panama.com">ventas@seprop-panama.com</a></li>
+            <li>
+              {/* Actualizado a ventas */}
+              <a href="mailto:ventas@seprop-panama.com">
+                ventas@seprop-panama.com
+              </a>
+            </li>
           </ul>
         </div>
 

@@ -2,11 +2,11 @@
 
 import { Resend } from "resend";
 
-// Next.js detectará automáticamente la llave desde Vercel
+// Tu API Key se mantiene igual en Vercel
 const resend = new Resend(process.env.RESEND_API_KEY);
-const CORREO_DESTINO = "atencionalcliente@seprop-panama.com";
+// CAMBIO AQUÍ: Ahora todo va para ventas
+const CORREO_DESTINO = "ventas@seprop-panama.com";
 
-// 1. Acción para Consultas de Información
 export async function sendContactEmail(formData: FormData) {
   const nombre = formData.get("nombre") as string;
   const email = formData.get("email") as string;
@@ -30,12 +30,10 @@ export async function sendContactEmail(formData: FormData) {
     });
     return { success: true };
   } catch (error) {
-    console.error("Error en el servidor:", error);
     return { success: false };
   }
 }
 
-// 2. Acción para Recibir Hojas de Vida (CV)
 export async function sendCVEmail(formData: FormData) {
   const nombre = formData.get("nombre") as string;
   const telefono = formData.get("telefono") as string;
@@ -43,8 +41,6 @@ export async function sendCVEmail(formData: FormData) {
   const file = formData.get("cv") as File;
 
   try {
-    if (!file || file.size === 0) throw new Error("No se adjuntó archivo");
-
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
@@ -52,15 +48,10 @@ export async function sendCVEmail(formData: FormData) {
       from: "RRHH Seprop <onboarding@resend.dev>",
       to: CORREO_DESTINO,
       subject: `CV Recibido: ${nombre} - ${puesto}`,
-      attachments: [
-        {
-          filename: file.name,
-          content: buffer,
-        },
-      ],
+      attachments: [{ filename: file.name, content: buffer }],
       html: `
         <div style="font-family: sans-serif; line-height: 1.5;">
-          <h2>Nueva postulación laboral</h2>
+          <h2>Nueva Hoja de Vida recibida</h2>
           <p><strong>Candidato:</strong> ${nombre}</p>
           <p><strong>Teléfono:</strong> ${telefono}</p>
           <p><strong>Puesto de interés:</strong> ${puesto}</p>
@@ -69,7 +60,6 @@ export async function sendCVEmail(formData: FormData) {
     });
     return { success: true };
   } catch (error) {
-    console.error("Error enviando CV:", error);
     return { success: false };
   }
 }
