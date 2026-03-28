@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Ofrecemos from "../components/Ofrecemos";
 import Servicios from "../components/Servicios";
@@ -11,7 +10,7 @@ import WhatsAppWidget from "../components/WhatsAppWidget";
 export default function Home() {
   return (
     <>
-      <Header />
+      {/* QUITAMOS EL HEADER DE AQUÍ */}
       <Hero />
       <Ofrecemos />
       <Servicios />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/Navbar"; 
 
 export const metadata: Metadata = {
   title: "Inicio - Seprop-Panamá",
@@ -17,7 +18,10 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Navbar /> {/* SOLO AQUÍ */}
+        {children}
+      </body>
     </html>
   );
 }
