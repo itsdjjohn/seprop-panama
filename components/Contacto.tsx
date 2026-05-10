@@ -31,7 +31,7 @@ export default function Contacto() {
           <p><i className="fas fa-phone"></i> Oficina: (+507) 372-9569</p>
           <p><i className="fas fa-mobile-alt"></i> WhatsApp: (+507) 6904-3435</p>
           <ul className="email-list">
-            <li><a href="mailto:esquiveljohn2@gmail.com">esquiveljohn2@gmail.com</a></li>
+            <li><a href="mailto:ventas@seprop-panama.com">ventas@seprop-panama.com</a></li>
           </ul>
         </div>
 
